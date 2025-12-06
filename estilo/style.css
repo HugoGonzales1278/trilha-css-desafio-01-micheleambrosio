@@ -1,78 +1,6 @@
 @charset "UTF-8";
 
 /*
-:root{
-    --fonte1: Verdana, Geneva, Tahoma, sans-serif;
-    --fonte2: "Passion One", sans-serif;
-    --fonte3: "Sriracha", cursive;
-}
-
-*{
-    margin: 0px;
-    padding: 0px;
-    font-size: 1em;
-}
-
-html, body{
-    min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.581);
-    font-family: var(--fonte1);
-}
-
-header{
-    background-image: url(../assets/images/banner.png);
-    color: white;
-    text-align: center;
-}
-
-header > h1 {
-    padding-top: 50px;
-    font-variant: small-caps;
-    font-family: var(--fonte2);
-    font-size: 10vw;
-    color: blue;
-}
-
-header > p {
-    padding-bottom: 50px;
-    color: white;
-}
-
-header a, footer a{
-    color: white;
-    text-decoration: none;
-    font-weight: bolder;
-}
-
-header a:hover, footer a:hover{
-    text-decoration: underline;
-}
-
-section{
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    line-height: 2em;
-    padding-left: 30px;
-    font-family: var(--fonte3);
-    font-size: 4vw;
-}
-
-section>p{
-    padding-bottom: 2em;
-}
-
-section.normal{
-    background-color: white;
-    color: black;
-}
-
-section.imagem{
-    background-color: rgb(39, 39, 39);
-    color: white;
-    box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.471);
-    background-size: cover;
-    background-attachment: fixed;
-}
 
 section.imagem > p {
     display: inline-block;
@@ -87,18 +15,12 @@ section#img01{
     background-position: right center;
 }
 
-section#img02{
-    background-image: url('../pacote-d012/imagens/background002.jpg');
-}
 
-footer{
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
     */
     /* ============================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+============================================ */
+/* ============================================
    RESET E CONFIGURAÇÕES GLOBAIS
 ============================================ */
 
@@ -108,17 +30,23 @@ footer{
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     color: #333;
-    background: fixed linear-gradient(black);
+    background: linear-gradient(180deg, #000000 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a4d8c 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 img {
     max-width: 100%;
     height: auto;
-    display: block;
+    display: inline-block;
 }
 
 /* ============================================
@@ -126,7 +54,8 @@ img {
 ============================================ */
 
 header {
-    background: linear-gradient(135deg, #667eea 0%, #4e4ba215 100%);
+    background-image: url(../assets/images/banner.png) center/cover no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -136,6 +65,8 @@ header {
     overflow: hidden;
 }
 
+
+
 /* Efeito de overlay decorativo */
 header::before {
     content: '';
@@ -144,15 +75,36 @@ header::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('assets/images/banner.png') center/cover no-repeat;
-    opacity: 0.1;
+    background: radial-gradient(circle at 20% 50%, rgba(240, 147, 251, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 87, 108, 0.2) 0%, transparent 50%);
     z-index: 0;
+    animation: gradientShift 10s ease infinite;
+    background-image: url(../assets/images/banner.png);
+
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.8;
+    }
 }
 
 .banner-content {
     max-width: 800px;
     text-align: center;
-    color: white;
+    color: rgb(48, 48, 195);
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 1s ease-out;
+}
+
+.banner-content p{
+    max-width: 800px;
+    text-align: center;
+    color: rgb(240, 240, 249);
     position: relative;
     z-index: 1;
     animation: fadeInUp 1s ease-out;
@@ -170,22 +122,28 @@ header::before {
 }
 
 .logo {
+    margin: 1px 1px 2px 2px;
     margin-bottom: 30px;
+    padding: 2px;
     animation: fadeIn 1.5s ease-out;
+    box-shadow: #000000;
+    border-color: #000000;
 }
 
 .logo img {
     max-width: 200px;
-    margin: 0 auto;
+    margin: 5px 5px 3px 3px;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    box-shadow: #000000;
 }
 
 .banner-content h1 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: linear 2px 2px 8px rgb(34, 6, 213);
     letter-spacing: -1px;
+    font-style: inherit;
 }
 
 .banner-content p {
@@ -216,21 +174,15 @@ header::before {
 .banner-content button:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #211822 0%, #65151f 100%);
     color: white;
 }
 
 .banner-content button:active {
     transform: translateY(-1px);
 }
-background: linear-gradient(
-    180deg,           /* De cima para baixo */
-    #000000 0%,       /* Preto puro no topo */
-    #1a1a2e 25%,      /* Preto azulado */
-    #16213e 50%,      /* Azul escuro médio */
-    #0f3460 75%,      /* Azul intermediário */
-    #0a4d8c 100%      /* Azul profundo na base */
-);
+
+
 
 /* ============================================
    MAIN - CONTEÚDO PRINCIPAL
@@ -246,7 +198,7 @@ main {
 ============================================ */
 
 #course-content {
-    background: white;
+    background: rgb(20, 19, 19);
     padding: 80px 40px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -254,7 +206,7 @@ main {
 
 #course-content h2 {
     font-size: 2.5rem;
-    color: #667eea;
+    color: #012be6;
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
@@ -274,7 +226,7 @@ main {
 
 #course-content > p {
     font-size: 1.1rem;
-    color: #666;
+    color: #faf8f8;
     max-width: 800px;
     margin: 30px auto 50px;
     line-height: 1.8;
@@ -290,7 +242,7 @@ main {
 }
 
 .module {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #002df4 0%, #f103d9 100%);
     color: white;
     padding: 25px 30px;
     border-radius: 15px;
@@ -336,102 +288,52 @@ main {
 ============================================ */
 
 #transform-world {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 560px;
+    background-size: cover;
+    background-image: url('../assets/images/woman-code.png');
     background-attachment: fixed;
-    padding: 150px 40px;
-    text-align: center;
+    border-top: 1px solid rgb(19, 19, 102);
+    border-bottom: 1px solid rgb(4, 4, 125);
+    padding: 200px;
     position: relative;
-    overflow: hidden;
 }
 
-<script>
-// Efeito Parallax avançado na imagem woman-code.png
-document.addEventListener('DOMContentLoaded', function() {
-    const professionalSection = document.querySelector('#professional-challenges');
-    const image = document.querySelector('#professional-challenges img');
-    
-    if (image && professionalSection) {
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.pageYOffset;
-            const sectionTop = professionalSection.offsetTop;
-            const sectionHeight = professionalSection.offsetHeight;
-            
-            // Calcula a posição relativa ao scroll
-            if (scrollPosition > sectionTop - window.innerHeight && 
-                scrollPosition < sectionTop + sectionHeight) {
-                
-                const relativeScroll = scrollPosition - sectionTop + window.innerHeight;
-                const scrollPercent = relativeScroll / (sectionHeight + window.innerHeight);
-                
-                // Aplica transformação parallax
-                const translateY = (scrollPercent - 0.5) * 50;
-                image.style.transform = `translateY(${translateY}px) scale(1.02)`;
-            }
-        });
-        
-        // Efeito parallax com movimento do mouse
-        professionalSection.addEventListener('mousemove', function(e) {
-            const rect = professionalSection.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width;
-            const y = (e.clientY - rect.top) / rect.height;
-            
-            const moveX = (x - 0.5) * 20;
-            const moveY = (y - 0.5) * 20;
-            
-            image.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
-        });
-        
-        // Reset ao sair do mouse
-        professionalSection.addEventListener('mouseleave', function() {
-            image.style.transform = 'translate(0, 0) scale(1)';
-        });
-    }
-});
-</script>
 
-assets/
-  └── images/
-      └── woman-code.png
-#transform-world img{
-        height: 560px;
-        background-size: cover;
-        background-image: url(../images/woman-code.png);
-        background-attachment: fixed;
-        border-top: 1px solid #33A8DB80;
-        border-bottom: 1px solid #33A8DB80;
-        padding: 200px;
-        
-    }
-    
+
 #transform-world p {
-    font-size: 3rem;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
     font-weight: 900;
+    max-width: 250px;
+    margin: 50px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    display: block;
+    font-size: 2.5rem;
     color: white;
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    letter-spacing: 3px;
-    position: relative;
-    z-index: 1;
-    animation: pulse 2s ease-in-out infinite;
+    text-shadow: 3px 3px  rgba(246, 3, 3, 0.3);
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    position: left;
+    
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
+
 
 /* ============================================
    SEÇÃO - DESAFIOS PROFISSIONAIS
 ============================================ */
 
 #professional-challenges {
-    background: white;
+    background: rgb(17, 17, 17);
     padding: 80px 40px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
 #professional-challenges h2 {
@@ -440,6 +342,7 @@ assets/
     margin-bottom: 40px;
     position: relative;
     display: inline-block;
+    z-index: 2;
 }
 
 #professional-challenges h2::after {
@@ -454,24 +357,72 @@ assets/
     border-radius: 2px;
 }
 
+/* Efeito Parallax na Imagem */
 #professional-challenges img {
     max-width: 600px;
     margin: 40px auto;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
+    position: relative;
+    z-index: 1;
+    /* Efeito parallax será aplicado via JavaScript ou CSS puro */
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 #professional-challenges img:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateZ(20px);
+    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+}
+
+/* Container parallax para woman-code.png */
+.parallax-container {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 800px;
+}
+
+.parallax-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease-out;
+}
+
+/* Efeito parallax com pseudo-elemento */
+#professional-challenges::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('assets/images/woman-code.png') center/contain no-repeat;
+    background-attachment: fixed;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none;
 }
 
 #professional-challenges p {
     font-size: 1.1rem;
-    color: #666;
+    color: #f5f4f4;
     max-width: 800px;
     margin: 30px auto;
     line-height: 1.8;
+    position: relative;
+    z-index: 2;
 }
 
 /* ============================================
@@ -480,7 +431,7 @@ assets/
 
 footer {
     background: #2d3748;
-    color: white;
+    color: rgb(240, 236, 32);
     padding: 60px 40px 40px;
     text-align: center;
 }
@@ -489,6 +440,7 @@ footer {
     max-width: 200px;
     margin: 0 auto 30px;
     filter: brightness(0) invert(1);
+    
 }
 
 footer p {
@@ -505,7 +457,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #f093fb;
+    color: #d741e8;
     border-bottom-color: #f093fb;
 }
 
