@@ -5,9 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trilha de CSS - DIO</title>
+  <link rel="stylesheet" href="estilo/style.css">
 </head>
 <body>
-  <header class="banner">
+  <header class="banner.png">
     <div class="banner-content">
       <div class="logo">
         <img src="assets/images/logo.png" title="Logotipo Trilha de CSS DIO" alt="Logotipo Trilha de CSS DIO">
@@ -37,6 +38,7 @@
       </div>
     </section>
     <section id="transform-world">
+      <img src="../trilha-css-desafio-01-micheleambrosio/assets/images/woman-code.png" alt="mulher programadora">
       <p>TRANSFORME O MUNDO COM A GENTE</p>
     </section>
     <section id="professional-challenges">
@@ -54,5 +56,49 @@
     <img class="dio-logo" src="assets/images/dio-logo.png" title="Logotipo DIO com o texto make the change" alt="Logotipo DIO com o texto make the change">
     <p>Acesse <a href="https://dio.me">dio.me</a> e se cadastre agora</p>
   </footer>
+  <script>
+    // Efeito Parallax avançado na imagem woman-code.png
+    document.addEventListener('DOMContentLoaded', function() {
+        const professionalSection = document.querySelector('#professional-challenges');
+        const image = document.querySelector('#professional-challenges img');
+        
+        if (image && professionalSection) {
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                const sectionTop = professionalSection.offsetTop;
+                const sectionHeight = professionalSection.offsetHeight;
+                
+                // Calcula a posição relativa ao scroll
+                if (scrollPosition > sectionTop - window.innerHeight && 
+                    scrollPosition < sectionTop + sectionHeight) {
+                    
+                    const relativeScroll = scrollPosition - sectionTop + window.innerHeight;
+                    const scrollPercent = relativeScroll / (sectionHeight + window.innerHeight);
+                    
+                    // Aplica transformação parallax
+                    const translateY = (scrollPercent - 0.5) * 50;
+                    image.style.transform = `translateY(${translateY}px) scale(1.02)`;
+                }
+            });
+            
+            // Efeito parallax com movimento do mouse
+            professionalSection.addEventListener('mousemove', function(e) {
+                const rect = professionalSection.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                
+                const moveX = (x - 0.5) * 20;
+                const moveY = (y - 0.5) * 20;
+                
+                image.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
+            });
+            
+            // Reset ao sair do mouse
+            professionalSection.addEventListener('mouseleave', function() {
+                image.style.transform = 'translate(0, 0) scale(1)';
+            });
+        }
+    });
+    </script>
 </body>
 </html>
